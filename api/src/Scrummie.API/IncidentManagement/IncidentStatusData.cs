@@ -1,16 +1,13 @@
-﻿// <copyright file="IncidentStatusData.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.Graph;
+using Newtonsoft.Json;
+using Scrummie.API.Data;
+using System;
+using System.Collections.Generic;
 
-namespace Sample.IncidentBot.IncidentStatus
+using System.ComponentModel;
+
+namespace Scrummie.API.IncidentStatus
 {
-    using System;
-    using System.Collections.Generic;
-    using Microsoft.Graph;
-    using Newtonsoft.Json;
-    using Sample.IncidentBot.Data;
-
     /// <summary>
     /// The incident status.
     /// </summary>
@@ -83,36 +80,10 @@ namespace Sample.IncidentBot.IncidentStatus
         public Guid BotMeetingScenarioId { get; private set; }
 
         /// <summary>
-        /// Gets the incident status.
-        /// </summary>
-        [JsonConverter(typeof(EnumConverter))]
-        public IncidentStatus IncidentStatus { get; private set; }
-
-        /// <summary>
         /// Gets the bot meeting status.
         /// </summary>
         [JsonConverter(typeof(EnumConverter))]
         public CallState? BotMeetingStatus { get; private set; }
-
-        /// <summary>
-        /// Gets the responder status.
-        /// </summary>
-        public IEnumerable<IncidentResponderStatusData> ResponderStatus => responderStatusDictionary.Values;
-
-        /// <summary>
-        /// Gets the incident id.
-        /// </summary>
-        public string Id { get; private set; }
-
-        /// <summary>
-        /// Gets the incident name.
-        /// </summary>
-        public string Name { get; private set; }
-
-        /// <summary>
-        /// Gets the incident time.
-        /// </summary>
-        public DateTime Time { get; private set; }
 
         /// <summary>
         /// Gets the incident data creation time.
@@ -120,12 +91,41 @@ namespace Sample.IncidentBot.IncidentStatus
         public DateTime DataCreationTime { get; private set; }
 
         /// <summary>
-        /// Update the incident status.
+        /// Gets the incident id.
         /// </summary>
-        /// <param name="status">The incident status.</param>
-        public void UpdateIncidentStatus(IncidentStatus status)
+        public string Id { get; private set; }
+
+        /// <summary>
+        /// Gets the incident status.
+        /// </summary>
+        [JsonConverter(typeof(EnumConverter))]
+        public IncidentStatus IncidentStatus { get; private set; }
+
+        /// <summary>
+        /// Gets the incident name.
+        /// </summary>
+        public string Name { get; private set; }
+
+        /// <summary>
+        /// Gets the responder status.
+        /// </summary>
+        public IEnumerable<IncidentResponderStatusData> ResponderStatus => responderStatusDictionary.Values;
+
+        /// <summary>
+        /// Gets the incident time.
+        /// </summary>
+        public DateTime Time { get; private set; }
+
+        /// <summary>
+        /// Get the responder's status.
+        /// </summary>
+        /// <param name="responderId">The responder id.</param>
+        /// <returns>The responder status.</returns>
+        public IncidentResponderStatusData GetResponder(string responderId)
         {
-            this.IncidentStatus = status;
+            this.responderStatusDictionary.TryGetValue(responderId, out IncidentResponderStatusData value);
+
+            return value;
         }
 
         /// <summary>
@@ -149,21 +149,12 @@ namespace Sample.IncidentBot.IncidentStatus
         }
 
         /// <summary>
-        /// Update the responder's notificaiton call id.
+        /// Update the incident status.
         /// </summary>
-        /// <param name="responderId">The responder id.</param>
-        /// <param name="callId">The call id.</param>
-        /// <param name="scenarioId">The scenario identifier.</param>
-        public void UpdateResponderNotificationCallId(string responderId, string callId, Guid scenarioId)
+        /// <param name="status">The incident status.</param>
+        public void UpdateIncidentStatus(IncidentStatus status)
         {
-            this.responderStatusDictionary.TryGetValue(responderId, out IncidentResponderStatusData responderData);
-
-            if (responderData != null)
-            {
-                responderData.NotificationCallId = callId;
-
-                responderData.NotificationScenarioId = scenarioId;
-            }
+            this.IncidentStatus = status;
         }
 
         /// <summary>
@@ -185,21 +176,6 @@ namespace Sample.IncidentBot.IncidentStatus
         }
 
         /// <summary>
-        /// Update the responder's notification status.
-        /// </summary>
-        /// <param name="responderId">The responder id.</param>
-        /// <param name="status">The notification status.</param>
-        public void UpdateResponderNotificationStatus(string responderId, CallState? status)
-        {
-            this.responderStatusDictionary.TryGetValue(responderId, out IncidentResponderStatusData responderData);
-
-            if (responderData != null)
-            {
-                responderData.NotificationStatus = status;
-            }
-        }
-
-        /// <summary>
         /// Update the responder's meeting status.
         /// </summary>
         /// <param name="responderId">The responder id.</param>
@@ -215,15 +191,36 @@ namespace Sample.IncidentBot.IncidentStatus
         }
 
         /// <summary>
-        /// Get the responder's status.
+        /// Update the responder's notificaiton call id.
         /// </summary>
         /// <param name="responderId">The responder id.</param>
-        /// <returns>The responder status.</returns>
-        public IncidentResponderStatusData GetResponder(string responderId)
+        /// <param name="callId">The call id.</param>
+        /// <param name="scenarioId">The scenario identifier.</param>
+        public void UpdateResponderNotificationCallId(string responderId, string callId, Guid scenarioId)
         {
-            this.responderStatusDictionary.TryGetValue(responderId, out IncidentResponderStatusData value);
+            this.responderStatusDictionary.TryGetValue(responderId, out IncidentResponderStatusData responderData);
 
-            return value;
+            if (responderData != null)
+            {
+                responderData.NotificationCallId = callId;
+
+                responderData.NotificationScenarioId = scenarioId;
+            }
+        }
+
+        /// <summary>
+        /// Update the responder's notification status.
+        /// </summary>
+        /// <param name="responderId">The responder id.</param>
+        /// <param name="status">The notification status.</param>
+        public void UpdateResponderNotificationStatus(string responderId, CallState? status)
+        {
+            this.responderStatusDictionary.TryGetValue(responderId, out IncidentResponderStatusData responderData);
+
+            if (responderData != null)
+            {
+                responderData.NotificationStatus = status;
+            }
         }
     }
 }

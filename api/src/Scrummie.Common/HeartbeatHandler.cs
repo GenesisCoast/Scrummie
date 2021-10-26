@@ -1,16 +1,11 @@
-﻿// <copyright file="HeartbeatHandler.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.Graph.Communications.Common;
+using Microsoft.Graph.Communications.Common.Telemetry;
+using System;
+using System.Threading.Tasks;
+using System.Timers;
 
-namespace Sample.Common
+namespace Scrummie.Common
 {
-    using System;
-    using System.Threading.Tasks;
-    using System.Timers;
-    using Microsoft.Graph.Communications.Common;
-    using Microsoft.Graph.Communications.Common.Telemetry;
-
     /// <summary>
     /// The base class for handling heartbeats.
     /// </summary>
@@ -34,13 +29,6 @@ namespace Sample.Common
             this.heartbeatTimer = timer;
         }
 
-        /// <summary>
-        /// This function is called whenever the heartbeat frequency has ellapsed.
-        /// </summary>
-        /// <param name="args">The elapsed event args.</param>
-        /// <returns>The <see cref="Task"/>.</returns>
-        protected abstract Task HeartbeatAsync(ElapsedEventArgs args);
-
         /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
@@ -49,6 +37,13 @@ namespace Sample.Common
             this.heartbeatTimer.Stop();
             this.heartbeatTimer.Dispose();
         }
+
+        /// <summary>
+        /// This function is called whenever the heartbeat frequency has ellapsed.
+        /// </summary>
+        /// <param name="args">The elapsed event args.</param>
+        /// <returns>The <see cref="Task"/>.</returns>
+        protected abstract Task HeartbeatAsync(ElapsedEventArgs args);
 
         /// <summary>
         /// The heartbeat function.

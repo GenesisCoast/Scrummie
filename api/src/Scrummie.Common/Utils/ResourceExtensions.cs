@@ -1,16 +1,11 @@
-﻿// <copyright file="ResourceExtensions.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.Graph;
+using Microsoft.Graph.Communications.Resources;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace Sample.Common.Utils
+namespace Scrummie.Common.Utils
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using Microsoft.Graph;
-    using Microsoft.Graph.Communications.Resources;
-
     /// <summary>
     /// Resource extensions for testing.
     /// </summary>
@@ -25,9 +20,7 @@ namespace Sample.Common.Utils
         /// <param name="match">The match.</param>
         /// <param name="failureMessage">The failure message.</param>
         /// <param name="timeout">The timeout.</param>
-        /// <returns>
-        /// The <see cref="Task" />.
-        /// </returns>
+        /// <returns>The <see cref="Task"/>.</returns>
         public static async Task WaitForUpdateAsync<TResource, TEntity>(
             this TResource resource,
             Func<ResourceEventArgs<TEntity>, bool> match,
@@ -87,9 +80,7 @@ namespace Sample.Common.Utils
         /// <param name="match">The match.</param>
         /// <param name="failureMessage">The failure message.</param>
         /// <param name="timeout">The timeout.</param>
-        /// <returns>
-        /// The matching <see cref="IResource{TSelf,TEntity}" />.
-        /// </returns>
+        /// <returns>The matching <see cref="IResource{TSelf,TEntity}"/>.</returns>
         public static async Task<TResource> WaitForUpdateAsync<TResourceCollection, TResource, TEntity>(
             this TResourceCollection resourceCollection,
             Func<CollectionEventArgs<TResource>, TResource> match,

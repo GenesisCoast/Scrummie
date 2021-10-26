@@ -1,9 +1,4 @@
-﻿// <copyright file="AzureAdOptions.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
-
-namespace Microsoft.AspNetCore.Authentication
+﻿namespace Scrummie.Common.Authentication
 {
     /// <summary>
     /// The Azure AD options class.
@@ -21,14 +16,14 @@ namespace Microsoft.AspNetCore.Authentication
         public string AppSecret { get; set; }
 
         /// <summary>
-        /// Gets or sets the instance.
-        /// </summary>
-        public string Instance { get; set; }
-
-        /// <summary>
         /// Gets or sets the domain.
         /// </summary>
         public string Domain { get; set; }
+
+        /// <summary>
+        /// Gets or sets the instance.
+        /// </summary>
+        public string Instance { get; set; }
 
         /// <summary>
         /// Gets or sets the tenant id.

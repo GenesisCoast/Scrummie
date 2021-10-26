@@ -1,4 +1,21 @@
-﻿using Sample.IncidentBot.IncidentStatus;
+﻿using Microsoft.Graph;
+using Microsoft.Graph.Communications.Calls;
+using Microsoft.Graph.Communications.Client;
+using Microsoft.Graph.Communications.Common.Telemetry;
+using Microsoft.Graph.Communications.Resources;
+using Scrummie.API.Controllers;
+using Scrummie.API.Data;
+using Scrummie.API.IncidentStatus;
+using Scrummie.Common.Authentication;
+using Scrummie.Common.Meetings;
+using Scrummie.Common.OnlineMeetings;
+using Scrummie.Common.Utils;
+using Scrummie.Data;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Scrummie.API.Bot
 {
@@ -12,7 +29,7 @@ namespace Scrummie.API.Bot
         /// </summary>
         /// <remarks>
         /// message: "You are calling an incident application endpoint. It's a sample for incoming
-        ///          call with audio prompt.".
+        /// call with audio prompt.".
         /// </remarks>
         public const string BotEndpointIncomingPromptName = "BotEndpointIncomingPrompt";
 
@@ -21,7 +38,7 @@ namespace Scrummie.API.Bot
         /// </summary>
         /// <remarks>
         /// message: "You are calling an incident application. It's a sample for incoming call with
-        ///          audio prompt.".
+        /// audio prompt.".
         /// </remarks>
         public const string BotIncomingPromptName = "BotIncomingPrompt";
 
@@ -30,7 +47,7 @@ namespace Scrummie.API.Bot
         /// </summary>
         /// <remarks>
         /// message: "There is an incident occured. Press '1' to join the incident meeting. Press
-        ///          '0' to listen to the instruction again. ".
+        /// '0' to listen to the instruction again. ".
         /// </remarks>
         public const string NotificationPromptName = "NotificationPrompt";
 
@@ -395,7 +412,7 @@ namespace Scrummie.API.Bot
         /// <param name="incidentCallContext">The incident call context.</param>
         private void AddCallToHandlers(ICall call, IncidentCallContext incidentCallContext)
         {
-            Validator.NotNull(incidentCallContext, nameof(incidentCallContext));
+            //Validator.NotNull(incidentCallContext, nameof(incidentCallContext));
 
             var statusData = this.IncidentStatusManager.GetIncident(incidentCallContext.IncidentId);
 

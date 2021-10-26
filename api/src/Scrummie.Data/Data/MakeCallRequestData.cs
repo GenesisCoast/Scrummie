@@ -1,9 +1,4 @@
-﻿// <copyright file="MakeCallRequestData.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
-
-namespace Sample.IncidentBot.Data
+﻿namespace Scrummie.API.Data
 {
     /// <summary>
     /// The outgoing call request body.
@@ -31,9 +26,9 @@ namespace Sample.IncidentBot.Data
         }
 
         /// <summary>
-        /// Gets or sets the tenant id.
+        /// Gets or sets a value indicating whether the object is application.
         /// </summary>
-        public string TenantId { get; set; }
+        public bool IsApplication { get; set; }
 
         /// <summary>
         /// Gets or sets the object id.
@@ -41,8 +36,8 @@ namespace Sample.IncidentBot.Data
         public string ObjectId { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the object is application.
+        /// Gets or sets the tenant id.
         /// </summary>
-        public bool IsApplication { get; set; }
+        public string TenantId { get; set; }
     }
 }

@@ -1,18 +1,13 @@
-﻿// <copyright file="CallHandler.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.Graph;
+using Microsoft.Graph.Communications.Calls;
+using Microsoft.Graph.Communications.Resources;
+using Scrummie.Common;
+using System;
+using System.Threading.Tasks;
+using System.Timers;
 
-namespace Sample.IncidentBot.Bot
+namespace Scrummie.API.Bot
 {
-    using System;
-    using System.Threading.Tasks;
-    using System.Timers;
-    using Microsoft.Graph;
-    using Microsoft.Graph.Communications.Calls;
-    using Microsoft.Graph.Communications.Resources;
-    using Sample.Common;
-
     /// <summary>
     /// Base class for call handler for event handling, logging and cleanup.
     /// </summary>
@@ -43,13 +38,17 @@ namespace Sample.IncidentBot.Bot
         /// </summary>
         protected Bot Bot { get; }
 
-        /// <inheritdoc/>
-        protected override Task HeartbeatAsync(ElapsedEventArgs args)
+        /// <summary>
+        /// The event handler when call is updated.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The arguments.</param>
+        protected virtual void CallOnUpdated(ICall sender, ResourceEventArgs<Call> args)
         {
-            return this.Call.KeepAliveAsync();
+            // do nothing in base class.
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
@@ -63,12 +62,18 @@ namespace Sample.IncidentBot.Bot
             }
         }
 
+        /// <inheritdoc/>
+        protected override Task HeartbeatAsync(ElapsedEventArgs args)
+        {
+            return this.Call.KeepAliveAsync();
+        }
+
         /// <summary>
-        /// The event handler when call is updated.
+        /// Event handler when participan is updated.
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="args">The arguments.</param>
-        protected virtual void CallOnUpdated(ICall sender, ResourceEventArgs<Call> args)
+        protected virtual void ParticipantOnUpdated(IParticipant sender, ResourceEventArgs<Participant> args)
         {
             // do nothing in base class.
         }
@@ -84,16 +89,6 @@ namespace Sample.IncidentBot.Bot
         }
 
         /// <summary>
-        /// Event handler when participan is updated.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The arguments.</param>
-        protected virtual void ParticipantOnUpdated(IParticipant sender, ResourceEventArgs<Participant> args)
-        {
-            // do nothing in base class.
-        }
-
-        /// <summary>
         /// Event handler for call updated.
         /// </summary>
         /// <param name="sender">The event sender.</param>
@@ -101,16 +96,6 @@ namespace Sample.IncidentBot.Bot
         private void OnCallUpdated(ICall sender, ResourceEventArgs<Call> args)
         {
             this.CallOnUpdated(sender, args);
-        }
-
-        /// <summary>
-        /// Event handler when participan is updated.
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="args">The arguments.</param>
-        private void OnParticipantUpdated(IParticipant sender, ResourceEventArgs<Participant> args)
-        {
-            this.ParticipantOnUpdated(sender, args);
         }
 
         /// <summary>
@@ -131,6 +116,16 @@ namespace Sample.IncidentBot.Bot
             }
 
             this.ParticipantsOnUpdated(sender, args);
+        }
+
+        /// <summary>
+        /// Event handler when participan is updated.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="args">The arguments.</param>
+        private void OnParticipantUpdated(IParticipant sender, ResourceEventArgs<Participant> args)
+        {
+            this.ParticipantOnUpdated(sender, args);
         }
     }
 }

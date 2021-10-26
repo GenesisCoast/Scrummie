@@ -1,16 +1,11 @@
-// <copyright file="OnlineMeetingHelper.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+using Microsoft.Graph;
+using Microsoft.Graph.Communications.Client.Authentication;
+using Microsoft.Graph.Communications.Common;
+using System;
+using System.Threading.Tasks;
 
-namespace Sample.Common.OnlineMeetings
+namespace Scrummie.Common.OnlineMeetings
 {
-    using System;
-    using System.Threading.Tasks;
-    using Microsoft.Graph;
-    using Microsoft.Graph.Communications.Client.Authentication;
-    using Microsoft.Graph.Communications.Common;
-
     /// <summary>
     /// Online meeting class to fetch meeting info based of meeting id (ex: vtckey).
     /// </summary>
@@ -36,7 +31,7 @@ namespace Sample.Common.OnlineMeetings
         /// <param name="tenantId">The tenant identifier.</param>
         /// <param name="videoTeleconferenceId">The cloud-video-interop meeting identifier.</param>
         /// <param name="scenarioId">The scenario identifier.</param>
-        /// <returns>The online meeting. </returns>
+        /// <returns>The online meeting.</returns>
         public async Task<OnlineMeeting> GetOnlineMeetingAsync(string tenantId, string videoTeleconferenceId, Guid scenarioId)
         {
             IAuthenticationProvider GetAuthenticationProvider()

@@ -1,9 +1,4 @@
-﻿// <copyright file="JoinCallRequestData.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
-
-namespace Sample.IncidentBot.Data
+﻿namespace Scrummie.API.Data
 {
     /// <summary>
     /// The join call body.
@@ -16,9 +11,9 @@ namespace Sample.IncidentBot.Data
         public string JoinURL { get; set; }
 
         /// <summary>
-        /// Gets or sets the meeting identifier.
+        /// Gets or sets the scenario id.
         /// </summary>
-        public string VideoTeleconferenceId { get; set; }
+        public string ScenarioId { get; set; }
 
         /// <summary>
         /// Gets or sets the tenant id.
@@ -26,8 +21,8 @@ namespace Sample.IncidentBot.Data
         public string TenantId { get; set; }
 
         /// <summary>
-        /// Gets or sets the scenario id.
+        /// Gets or sets the meeting identifier.
         /// </summary>
-        public string ScenarioId { get; set; }
+        public string VideoTeleconferenceId { get; set; }
     }
 }

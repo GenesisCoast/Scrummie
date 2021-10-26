@@ -1,13 +1,9 @@
-﻿// <copyright file="BotBuilderExtensions.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.Extensions.DependencyInjection;
+using Scrummie.API.Bot;
+using System;
 
-namespace Microsoft.Extensions.DependencyInjection
+namespace Scrummie.Common.DependencyInjection
 {
-    using System;
-    using Sample.IncidentBot.Bot;
-
     /// <summary>
     /// The bot builder extensions class.
     /// </summary>

@@ -1,17 +1,12 @@
-﻿// <copyright file="GraphClientExtensions.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.Graph;
+using Microsoft.Graph.Communications.Common;
+using Microsoft.Graph.Communications.Common.Transport;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace Sample.Common.Transport
+namespace Scrummie.Common.Transport
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Microsoft.Graph;
-    using Microsoft.Graph.Communications.Common;
-    using Microsoft.Graph.Communications.Common.Transport;
-
     /// <summary>
     /// Extensions for <see cref="IGraphClient"/>.
     /// </summary>
@@ -27,15 +22,13 @@ namespace Sample.Common.Transport
         /// <param name="tenant">The tenant.</param>
         /// <param name="scenarioId">The scenario identifier.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns>
-        /// The <see cref="IGraphResponse{T}" />.
-        /// </returns>
+        /// <returns>The <see cref="IGraphResponse{T}"/>.</returns>
         public static Task<IGraphResponse<TResponse>> SendAsync<TRequest, TResponse>(
             this IGraphClient client,
             IGraphRequest<TRequest> request,
             string tenant,
             Guid scenarioId,
-            CancellationToken cancellationToken = default(CancellationToken))
+            CancellationToken cancellationToken = default)
             where TRequest : class
             where TResponse : class
         {
@@ -59,15 +52,13 @@ namespace Sample.Common.Transport
         /// <param name="tenant">The tenant.</param>
         /// <param name="scenarioId">The scenario identifier.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns>
-        /// The <see cref="IGraphResponse{T}" />.
-        /// </returns>
+        /// <returns>The <see cref="IGraphResponse{T}"/>.</returns>
         public static Task<IGraphResponse> SendAsync<TRequest>(
             this IGraphClient client,
             IGraphRequest<TRequest> request,
             string tenant,
             Guid scenarioId,
-            CancellationToken cancellationToken = default(CancellationToken))
+            CancellationToken cancellationToken = default)
             where TRequest : class
         {
             if (!string.IsNullOrWhiteSpace(tenant))
@@ -84,23 +75,21 @@ namespace Sample.Common.Transport
         /// <summary>
         /// Sends the request asynchronously.
         /// </summary>
-        /// <typeparam name="T"><see cref="Type" /> of the content present in the response.</typeparam>
+        /// <typeparam name="T"><see cref="Type"/> of the content present in the response.</typeparam>
         /// <param name="client">The client.</param>
         /// <param name="request">The request.</param>
         /// <param name="requestType">Type of the request.</param>
         /// <param name="tenant">The tenant.</param>
         /// <param name="scenarioId">The scenario identifier.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns>
-        /// The <see cref="Task" /> returning the generic type.
-        /// </returns>
+        /// <returns>The <see cref="Task"/> returning the generic type.</returns>
         public static async Task<T> SendAsync<T>(
             this IGraphClient client,
             IBaseRequest request,
             RequestType requestType,
             string tenant,
             Guid scenarioId,
-            CancellationToken cancellationToken = default(CancellationToken))
+            CancellationToken cancellationToken = default)
             where T : class
         {
             var graphRequest = CreateGraphRequest(request, requestType);
@@ -119,29 +108,24 @@ namespace Sample.Common.Transport
         /// <param name="tenant">The tenant.</param>
         /// <param name="scenarioId">The scenario identifier.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns>
-        /// The <see cref="Task" />.
-        /// </returns>
+        /// <returns>The <see cref="Task"/>.</returns>
         public static Task SendAsync(
             this IGraphClient client,
             IBaseRequest request,
             RequestType requestType,
             string tenant,
             Guid scenarioId,
-            CancellationToken cancellationToken = default(CancellationToken))
+            CancellationToken cancellationToken = default)
         {
             return client.SendAsync<NoContentMessage>(request, requestType, tenant, scenarioId, cancellationToken);
         }
 
         /// <summary>
-        /// Creates the graph request.
-        /// This extracts the `RequestBody` object from the `IBaseRequest`.
+        /// Creates the graph request. This extracts the `RequestBody` object from the `IBaseRequest`.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <param name="requestType">Type of the request.</param>
-        /// <returns>
-        /// The <see cref="IGraphRequest{T}" /> from the given <see cref="IBaseRequest" />.
-        /// </returns>
+        /// <returns>The <see cref="IGraphRequest{T}"/> from the given <see cref="IBaseRequest"/>.</returns>
         private static IGraphRequest<object> CreateGraphRequest(
             IBaseRequest request,
             RequestType requestType)

@@ -1,59 +1,47 @@
-﻿// <copyright file="UserPasswordAuthenticationProvider.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.Graph.Communications.Client.Authentication;
+using Microsoft.Graph.Communications.Common;
+using Microsoft.Graph.Communications.Common.Telemetry;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
-// THIS CODE HAS NOT BEEN TESTED RIGOROUSLY.USING THIS CODE IN PRODUCTION ENVIRONMENT IS STRICTLY NOT RECOMMENDED.
-// THIS SAMPLE IS PURELY FOR DEMONSTRATION PURPOSES ONLY.
-// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND.
-namespace Sample.Common.Authentication
+namespace Scrummie.Common.Authentication
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Threading.Tasks;
-    using Microsoft.Graph.Communications.Client.Authentication;
-    using Microsoft.Graph.Communications.Common;
-    using Microsoft.Graph.Communications.Common.Telemetry;
-    using Newtonsoft.Json;
-
     /// <summary>
     /// Authentication provider to add .
     /// </summary>
     public class UserPasswordAuthenticationProvider : ObjectRoot, IRequestAuthenticationProvider
     {
         /// <summary>
+        /// Gets the application identifier.
+        /// </summary>
+        /// <value>The application identifier.</value>
+        private readonly string appId;
+
+        /// <summary>
         /// The application name.
         /// </summary>
         private readonly string appName;
 
         /// <summary>
-        /// Gets the application identifier.
-        /// </summary>
-        /// <value>
-        /// The application identifier.
-        /// </value>
-        private readonly string appId;
-
-        /// <summary>
         /// Gets the application secret.
         /// </summary>
-        /// <value>
-        /// The application secret.
-        /// </value>
+        /// <value>The application secret.</value>
         private readonly string appSecret;
-
-        /// <summary>
-        /// Gets UserName to be passed to oauth service.
-        /// </summary>
-        private readonly string userName;
 
         /// <summary>
         /// Gets password to be passed to oauth service.
         /// </summary>
         private readonly string password;
+
+        /// <summary>
+        /// Gets UserName to be passed to oauth service.
+        /// </summary>
+        private readonly string userName;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UserPasswordAuthenticationProvider"/> class.
@@ -75,7 +63,7 @@ namespace Sample.Common.Authentication
             this.password = password.NotNullOrWhitespace(nameof(password));
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task AuthenticateOutboundRequestAsync(HttpRequestMessage request, string tenantId)
         {
             Debug.Assert(!string.IsNullOrWhiteSpace(tenantId), $"Invalid {nameof(tenantId)}.");
@@ -122,7 +110,7 @@ namespace Sample.Common.Authentication
             this.GraphLogger.Info($"Generated OAuth token. Expires in {authResult.Expires_In / 60}  minutes.");
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Task<RequestValidationResult> ValidateInboundRequestAsync(HttpRequestMessage request)
         {
             // Currently no scenarios on /user | /me path for inbound requests.
@@ -140,7 +128,7 @@ namespace Sample.Common.Authentication
             public string Access_Token { get; set; }
 
             /// <summary>
-            ///  Gets or Sets expires time.
+            /// Gets or Sets expires time.
             /// </summary>
             public int Expires_In { get; set; }
         }

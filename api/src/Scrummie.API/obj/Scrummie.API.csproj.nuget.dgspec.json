@@ -27,7 +27,14 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.Common\\Scrummie.Common.csproj": {
+                "projectPath": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.Common\\Scrummie.Common.csproj"
+              },
+              "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.Data\\Scrummie.Data.csproj": {
+                "projectPath": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.Data\\Scrummie.Data.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -40,13 +47,21 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
+            "Microsoft.Graph.Communications.Core": {
+              "target": "Package",
+              "version": "[1.2.0.3742, )"
+            },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.11.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[5.6.3, )"
+              "version": "[6.2.3, )"
             }
           },
           "imports": [
@@ -63,6 +78,174 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.Common\\Scrummie.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.Common\\Scrummie.Common.csproj",
+        "projectName": "Scrummie.Common",
+        "projectPath": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.Common\\Scrummie.Common.csproj",
+        "packagesPath": "C:\\Users\\h.sanderson\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\h.sanderson\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[2.2.7, )"
+            },
+            "Microsoft.AspNet.Mvc": {
+              "target": "Package",
+              "version": "[5.2.7, )"
+            },
+            "Microsoft.AspNetCore.Authentication": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Primitives": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.Graph.Communications.Calls": {
+              "target": "Package",
+              "version": "[1.2.0.3742, )"
+            },
+            "Microsoft.Graph.Communications.Client": {
+              "target": "Package",
+              "version": "[1.2.0.3742, )"
+            },
+            "Microsoft.Graph.Communications.Common": {
+              "target": "Package",
+              "version": "[1.2.0.3742, )"
+            },
+            "Microsoft.Graph.Communications.Core": {
+              "target": "Package",
+              "version": "[1.2.0.3742, )"
+            },
+            "Microsoft.IdentityModel.Clients.ActiveDirectory": {
+              "target": "Package",
+              "version": "[5.2.9, )"
+            },
+            "Microsoft.IdentityModel.Protocols.OpenIdConnect": {
+              "target": "Package",
+              "version": "[6.13.1, )"
+            },
+            "System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.Data\\Scrummie.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.Data\\Scrummie.Data.csproj",
+        "projectName": "Scrummie.Data",
+        "projectPath": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.Data\\Scrummie.Data.csproj",
+        "packagesPath": "C:\\Users\\h.sanderson\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\h.sanderson\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.Graph.Communications.Core": {
+              "target": "Package",
+              "version": "[1.2.0.3742, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

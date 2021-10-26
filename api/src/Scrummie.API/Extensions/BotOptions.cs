@@ -1,12 +1,7 @@
-﻿// <copyright file="BotOptions.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using System;
 
-namespace Sample.IncidentBot.Bot
+namespace Scrummie.API.Bot
 {
-    using System;
-
     /// <summary>
     /// The bot options class.
     /// </summary>

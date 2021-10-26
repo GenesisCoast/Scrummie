@@ -1,15 +1,10 @@
-﻿// <copyright file="CommonUtilities.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.Graph.Communications.Common.Telemetry;
+using System;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
-namespace Sample.Common
+namespace Scrummie.Common
 {
-    using System;
-    using System.Runtime.CompilerServices;
-    using System.Threading.Tasks;
-    using Microsoft.Graph.Communications.Common.Telemetry;
-
     /// <summary>
     /// The utility class.
     /// </summary>
@@ -24,9 +19,7 @@ namespace Sample.Common
         /// <param name="memberName">Calling function.</param>
         /// <param name="filePath">File name where code is located.</param>
         /// <param name="lineNumber">Line number where code is located.</param>
-        /// <returns>
-        /// A <see cref="Task" /> representing the asynchronous operation.
-        /// </returns>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public static async Task ForgetAndLogExceptionAsync(
             this Task task,
             IGraphLogger logger,

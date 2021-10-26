@@ -1,10 +1,18 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Graph.Communications.Common.Telemetry;
 using Microsoft.OpenApi.Models;
+using Scrummie.API.Bot;
+using Scrummie.API.Controllers;
+using Scrummie.Common.Authentication;
+using Scrummie.Common.DependencyInjection;
+using Scrummie.Common.Logging;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Scrummie.API
 {
@@ -13,11 +21,6 @@ namespace Scrummie.API
         private readonly GraphLogger logger;
 
         private readonly SampleObserver observer;
-
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Startup"/> class.
@@ -29,8 +32,6 @@ namespace Scrummie.API
             this.logger = new GraphLogger(typeof(Startup).Assembly.GetName().Name);
             this.observer = new SampleObserver(this.logger);
         }
-
-        public IConfiguration Configuration { get; }
 
         /// <summary>
         /// Gets the configuration.
@@ -44,7 +45,7 @@ namespace Scrummie.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Scrummie.API v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", " v1"));
             }
 
             app.UseHttpsRedirection();
@@ -86,16 +87,6 @@ namespace Scrummie.API
             app.UseMvc();
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Scrummie.API", Version = "v1" });
-            });
-        }
-
         /// <summary>
         /// This method gets called by the runtime. Use this method to add services to the container.
         /// </summary>
@@ -114,6 +105,12 @@ namespace Scrummie.API
             services
                 .AddBot(options => this.Configuration.Bind("Bot", options))
                 .AddMvc();
+
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "", Version = "v1" });
+            });
         }
     }
 }

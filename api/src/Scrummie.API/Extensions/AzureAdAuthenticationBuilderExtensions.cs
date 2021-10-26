@@ -1,15 +1,11 @@
-﻿// <copyright file="AzureAdAuthenticationBuilderExtensions.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using System;
 
-namespace Microsoft.AspNetCore.Authentication
+namespace Scrummie.Common.Authentication
 {
-    using System;
-    using Microsoft.AspNetCore.Authentication.JwtBearer;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Options;
-
     /// <summary>
     /// The azure ad service collection extensions class.
     /// </summary>

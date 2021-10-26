@@ -1,17 +1,12 @@
-﻿// <copyright file="SampleObserver.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.Graph.Communications.Common.Telemetry;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Sample.Common.Logging
+namespace Scrummie.Common.Logging
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Microsoft.Graph.Communications.Common.Telemetry;
-
     /// <summary>
     /// Memory logger for quick diagnostics.
     /// Note: Do not use in production code.
@@ -21,14 +16,9 @@ namespace Sample.Common.Logging
         private static readonly int MaxLogCount = 5000;
 
         /// <summary>
-        /// Observer subscription.
+        /// The formatter.
         /// </summary>
-        private IDisposable subscription;
-
-        /// <summary>
-        /// Linked list representing the logs.
-        /// </summary>
-        private LinkedList<string> logs = new LinkedList<string>();
+        private ILogEventFormatter formatter = new CommsLogEventFormatter();
 
         /// <summary>
         /// Lock for securing logs.
@@ -36,12 +26,17 @@ namespace Sample.Common.Logging
         private object lockLogs = new object();
 
         /// <summary>
-        /// The formatter.
+        /// Linked list representing the logs.
         /// </summary>
-        private ILogEventFormatter formatter = new CommsLogEventFormatter();
+        private LinkedList<string> logs = new LinkedList<string>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SampleObserver" /> class.
+        /// Observer subscription.
+        /// </summary>
+        private IDisposable subscription;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SampleObserver"/> class.
         /// </summary>
         /// <param name="logger">The logger.</param>
         public SampleObserver(IGraphLogger logger)
@@ -51,6 +46,20 @@ namespace Sample.Common.Logging
             TaskScheduler.UnobservedTaskException += (_, e) => logger.Error(e.Exception, "Unobserved task exception");
 
             this.subscription = logger.Subscribe(this);
+        }
+
+        /// <inheritdoc/>
+        public void Dispose()
+        {
+            lock (this.lockLogs)
+            {
+                this.logs?.Clear();
+                this.logs = null;
+            }
+
+            this.subscription?.Dispose();
+            this.subscription = null;
+            this.formatter = null;
         }
 
         /// <summary>
@@ -77,9 +86,7 @@ namespace Sample.Common.Logging
         /// <param name="filter">The filter.</param>
         /// <param name="skip">Skip number of entries.</param>
         /// <param name="take">Pagination size.</param>
-        /// <returns>
-        /// Log entries.
-        /// </returns>
+        /// <returns>Log entries.</returns>
         public string GetLogs(string filter, int skip = 0, int take = int.MaxValue)
         {
             lock (this.lockLogs)
@@ -93,7 +100,17 @@ namespace Sample.Common.Logging
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
+        public void OnCompleted()
+        {
+        }
+
+        /// <inheritdoc/>
+        public void OnError(Exception error)
+        {
+        }
+
+        /// <inheritdoc/>
         public void OnNext(LogEvent logEvent)
         {
             // Do nothing for metrics for now.
@@ -121,30 +138,6 @@ namespace Sample.Common.Logging
                     this.logs.RemoveLast();
                 }
             }
-        }
-
-        /// <inheritdoc />
-        public void OnError(Exception error)
-        {
-        }
-
-        /// <inheritdoc />
-        public void OnCompleted()
-        {
-        }
-
-        /// <inheritdoc />
-        public void Dispose()
-        {
-            lock (this.lockLogs)
-            {
-                this.logs?.Clear();
-                this.logs = null;
-            }
-
-            this.subscription?.Dispose();
-            this.subscription = null;
-            this.formatter = null;
         }
     }
 }

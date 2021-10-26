@@ -1,14 +1,9 @@
-﻿// <copyright file="IncidentStatusManager.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Sample.IncidentBot.IncidentStatus
+namespace Scrummie.API.IncidentStatus
 {
-    using System.Collections.Concurrent;
-    using System.Collections.Generic;
-    using System.Linq;
-
     /// <summary>
     /// The incident status manager class.
     /// </summary>
@@ -48,12 +43,15 @@ namespace Sample.IncidentBot.IncidentStatus
         }
 
         /// <summary>
-        /// Remove an incident.
+        /// Get an incident.
         /// </summary>
         /// <param name="id">The incident id.</param>
-        public void RemoveIncident(string id)
+        /// <returns>The incident data.</returns>
+        public IncidentStatusData GetIncident(string id)
         {
-            this.statusDataDictionary.TryRemove(id, out IncidentStatusData data);
+            this.statusDataDictionary.TryGetValue(id, out IncidentStatusData value);
+
+            return value;
         }
 
         /// <summary>
@@ -67,15 +65,12 @@ namespace Sample.IncidentBot.IncidentStatus
         }
 
         /// <summary>
-        /// Get an incident.
+        /// Remove an incident.
         /// </summary>
         /// <param name="id">The incident id.</param>
-        /// <returns>The incident data.</returns>
-        public IncidentStatusData GetIncident(string id)
+        public void RemoveIncident(string id)
         {
-            this.statusDataDictionary.TryGetValue(id, out IncidentStatusData value);
-
-            return value;
+            this.statusDataDictionary.TryRemove(id, out IncidentStatusData data);
         }
     }
 }

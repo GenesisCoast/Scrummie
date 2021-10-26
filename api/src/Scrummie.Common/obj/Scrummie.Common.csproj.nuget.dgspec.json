@@ -8,31 +8,25 @@
       "version": "1.0.0",
       "restore": {
         "projectUniqueName": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.Common\\Scrummie.Common.csproj",
-        "projectName": "Sample.Common",
+        "projectName": "Scrummie.Common",
         "projectPath": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.Common\\Scrummie.Common.csproj",
         "packagesPath": "C:\\Users\\h.sanderson\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.Common\\obj\\",
         "projectStyle": "PackageReference",
-        "crossTargeting": true,
         "configFilePaths": [
           "C:\\Users\\h.sanderson\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net461",
-          "netstandard2.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net461": {
-            "targetAlias": "net461",
-            "projectReferences": {}
-          },
-          "netstandard2.0": {
-            "targetAlias": "netstandard2.0",
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {}
           }
         },
@@ -43,76 +37,56 @@
         }
       },
       "frameworks": {
-        "net461": {
-          "targetAlias": "net461",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
             "MSTest.TestFramework": {
               "target": "Package",
-              "version": "[2.0.0, )"
+              "version": "[2.2.7, )"
+            },
+            "Microsoft.AspNet.Mvc": {
+              "target": "Package",
+              "version": "[5.2.7, )"
+            },
+            "Microsoft.AspNetCore.Authentication": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Primitives": {
+              "target": "Package",
+              "version": "[5.0.1, )"
             },
             "Microsoft.Graph.Communications.Calls": {
               "target": "Package",
-              "version": "[1.2.0.850, )"
+              "version": "[1.2.0.3742, )"
             },
             "Microsoft.Graph.Communications.Client": {
               "target": "Package",
-              "version": "[1.2.0.850, )"
+              "version": "[1.2.0.3742, )"
             },
             "Microsoft.Graph.Communications.Common": {
               "target": "Package",
-              "version": "[1.2.0.850, )"
+              "version": "[1.2.0.3742, )"
             },
             "Microsoft.Graph.Communications.Core": {
               "target": "Package",
-              "version": "[1.2.0.850, )"
+              "version": "[1.2.0.3742, )"
             },
             "Microsoft.IdentityModel.Clients.ActiveDirectory": {
               "target": "Package",
-              "version": "[5.2.3, )"
+              "version": "[5.2.9, )"
             },
             "Microsoft.IdentityModel.Protocols.OpenIdConnect": {
               "target": "Package",
-              "version": "[5.5.0, )"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
-        },
-        "netstandard2.0": {
-          "targetAlias": "netstandard2.0",
-          "dependencies": {
-            "MSTest.TestFramework": {
-              "target": "Package",
-              "version": "[2.0.0, )"
-            },
-            "Microsoft.Graph.Communications.Calls": {
-              "target": "Package",
-              "version": "[1.2.0.850, )"
-            },
-            "Microsoft.Graph.Communications.Client": {
-              "target": "Package",
-              "version": "[1.2.0.850, )"
-            },
-            "Microsoft.Graph.Communications.Common": {
-              "target": "Package",
-              "version": "[1.2.0.850, )"
-            },
-            "Microsoft.Graph.Communications.Core": {
-              "target": "Package",
-              "version": "[1.2.0.850, )"
-            },
-            "Microsoft.IdentityModel.Clients.ActiveDirectory": {
-              "target": "Package",
-              "version": "[5.2.3, )"
-            },
-            "Microsoft.IdentityModel.Protocols.OpenIdConnect": {
-              "target": "Package",
-              "version": "[5.5.0, )"
-            },
-            "NETStandard.Library": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.0.3, )",
-              "autoReferenced": true
+              "version": "[6.13.1, )"
             },
             "System.Net.Http": {
               "target": "Package",
@@ -129,6 +103,11 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }

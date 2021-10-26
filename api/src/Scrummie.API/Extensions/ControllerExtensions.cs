@@ -1,51 +1,21 @@
-﻿// <copyright file="ControllerExtensions.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
+using Microsoft.Graph;
+using System;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using Controller = Microsoft.AspNetCore.Mvc.Controller;
 
-namespace Microsoft.AspNetCore.Mvc
+namespace Scrummie.Common.Mvc
 {
-    using System;
-    using System.Linq;
-    using System.Net;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Threading.Tasks;
-    using Microsoft.Extensions.Primitives;
-    using Microsoft.Graph;
-
     /// <summary>
     /// The controller exceptions.
     /// </summary>
     public static class ControllerExtensions
     {
-        /// <summary>
-        /// Convert the status code, content of HttpResponseMessage to IActionResult,
-        /// and copy the headers from response to HttpContext.Response.Headers.
-        /// </summary>
-        /// <param name="controller">The HttpResponse instance.</param>
-        /// <param name="responseMessage">The HTtpResponseMessage instance.</param>
-        /// <returns>The action result.</returns>
-        public static async Task<IActionResult> GetActionResultAsync(this Controller controller, HttpResponseMessage responseMessage)
-        {
-            var response = controller.HttpContext.Response;
-
-            controller.CopyResponseHeaders(responseMessage.Headers);
-
-            var statusCode = (int)responseMessage.StatusCode;
-
-            if (responseMessage.Content == null)
-            {
-                return controller.StatusCode(statusCode);
-            }
-            else
-            {
-                var responseBody = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-
-                return controller.StatusCode(statusCode, responseBody);
-            }
-        }
-
         /// <summary>
         /// Convert exception to action result.
         /// </summary>
@@ -72,6 +42,33 @@ namespace Microsoft.AspNetCore.Mvc
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Convert the status code, content of HttpResponseMessage to IActionResult, and copy the
+        /// headers from response to HttpContext.Response.Headers.
+        /// </summary>
+        /// <param name="controller">The HttpResponse instance.</param>
+        /// <param name="responseMessage">The HTtpResponseMessage instance.</param>
+        /// <returns>The action result.</returns>
+        public static async Task<IActionResult> GetActionResultAsync(this Controller controller, HttpResponseMessage responseMessage)
+        {
+            var response = controller.HttpContext.Response;
+
+            controller.CopyResponseHeaders(responseMessage.Headers);
+
+            var statusCode = (int)responseMessage.StatusCode;
+
+            if (responseMessage.Content == null)
+            {
+                return controller.StatusCode(statusCode);
+            }
+            else
+            {
+                var responseBody = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                return controller.StatusCode(statusCode, responseBody);
+            }
         }
 
         /// <summary>

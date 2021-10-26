@@ -1,31 +1,25 @@
-﻿// <copyright file="ResponderCallHandler.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.Graph;
+using Microsoft.Graph.Communications.Calls;
+using Microsoft.Graph.Communications.Common.Telemetry;
+using Microsoft.Graph.Communications.Resources;
+using Scrummie.API.IncidentStatus;
+using Scrummie.Data;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace Sample.IncidentBot.Bot
+namespace Scrummie.API.Bot
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Microsoft.Graph;
-    using Microsoft.Graph.Communications.Calls;
-    using Microsoft.Graph.Communications.Common.Telemetry;
-    using Microsoft.Graph.Communications.Resources;
-    using Sample.IncidentBot.Data;
-    using Sample.IncidentBot.IncidentStatus;
-
     /// <summary>
     /// The responder call handler class.
     /// </summary>
     public class ResponderCallHandler : CallHandler
     {
+        private int promptTimes;
         private string responderId;
 
         private IncidentStatusData statusData;
-
-        private int promptTimes;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponderCallHandler"/> class.
@@ -70,6 +64,7 @@ namespace Sample.IncidentBot.Bot
                         case Tone.Tone1:
                             this.PlayPromptAndTransferToMeeting();
                             break;
+
                         case Tone.Tone0:
                         default:
                             this.PlayNotificationPrompt();
@@ -78,58 +73,6 @@ namespace Sample.IncidentBot.Bot
 
                     sender.Resource.ToneInfo.Tone = null;
                 }
-            }
-        }
-
-        /// <summary>
-        /// Play prompt and transfer to the incident meeting.
-        /// </summary>
-        private void PlayPromptAndTransferToMeeting()
-        {
-            Task.Run(async () =>
-            {
-                await this.PlayTransferingPromptAsync().ConfigureAwait(false);
-                this.TransferToIncidentMeeting();
-            });
-        }
-
-        /// <summary>
-        /// Subscribe to tone.
-        /// </summary>
-        private void SubscribeToTone()
-        {
-            Task.Run(async () =>
-            {
-                try
-                {
-                    await this.Call.SubscribeToToneAsync().ConfigureAwait(false);
-                    this.GraphLogger.Info("Started subscribing to tone.");
-                }
-                catch (Exception ex)
-                {
-                    this.GraphLogger.Error(ex, $"Failed to subscribe to tone. ");
-                    throw;
-                }
-            });
-        }
-
-        /// <summary>
-        /// Play the transfering prompt.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="Task" /> representing the asynchronous operation.
-        /// </returns>
-        private async Task PlayTransferingPromptAsync()
-        {
-            try
-            {
-                await this.Call.PlayPromptAsync(new List<MediaPrompt> { this.Bot.MediaMap[Bot.TransferingPromptName] }).ConfigureAwait(false);
-                this.GraphLogger.Info("Started playing transfering prompt");
-            }
-            catch (Exception ex)
-            {
-                this.GraphLogger.Error(ex, $"Failed to play transfering prompt.");
-                throw;
             }
         }
 
@@ -148,6 +91,56 @@ namespace Sample.IncidentBot.Bot
                 catch (Exception ex)
                 {
                     this.GraphLogger.Error(ex, $"Failed to play notification prompt.");
+                    throw;
+                }
+            });
+        }
+
+        /// <summary>
+        /// Play prompt and transfer to the incident meeting.
+        /// </summary>
+        private void PlayPromptAndTransferToMeeting()
+        {
+            Task.Run(async () =>
+            {
+                await this.PlayTransferingPromptAsync().ConfigureAwait(false);
+                this.TransferToIncidentMeeting();
+            });
+        }
+
+        /// <summary>
+        /// Play the transfering prompt.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        private async Task PlayTransferingPromptAsync()
+        {
+            try
+            {
+                await this.Call.PlayPromptAsync(new List<MediaPrompt> { this.Bot.MediaMap[Bot.TransferingPromptName] }).ConfigureAwait(false);
+                this.GraphLogger.Info("Started playing transfering prompt");
+            }
+            catch (Exception ex)
+            {
+                this.GraphLogger.Error(ex, $"Failed to play transfering prompt.");
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Subscribe to tone.
+        /// </summary>
+        private void SubscribeToTone()
+        {
+            Task.Run(async () =>
+            {
+                try
+                {
+                    await this.Call.SubscribeToToneAsync().ConfigureAwait(false);
+                    this.GraphLogger.Info("Started subscribing to tone.");
+                }
+                catch (Exception ex)
+                {
+                    this.GraphLogger.Error(ex, $"Failed to subscribe to tone. ");
                     throw;
                 }
             });

@@ -1,12 +1,7 @@
-﻿// <copyright file="HomeController.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace IcMBot.Controllers
+namespace Scrummie.API.Controllers
 {
-    using Microsoft.AspNetCore.Mvc;
-
     /// <summary>
     /// The home controller class.
     /// </summary>

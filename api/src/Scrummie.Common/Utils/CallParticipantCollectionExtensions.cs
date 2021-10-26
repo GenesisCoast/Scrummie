@@ -1,17 +1,12 @@
-﻿// <copyright file="CallParticipantCollectionExtensions.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.Graph;
+using Microsoft.Graph.Communications.Calls;
+using Microsoft.Graph.Communications.Common;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Sample.Common.Utils
+namespace Scrummie.Common.Utils
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Microsoft.Graph;
-    using Microsoft.Graph.Communications.Calls;
-    using Microsoft.Graph.Communications.Common;
-
     /// <summary>
     /// The call extensions.
     /// </summary>
@@ -24,9 +19,7 @@ namespace Sample.Common.Utils
         /// <param name="match">The match function.</param>
         /// <param name="failureMessage">The failure message.</param>
         /// <param name="timeOut">The time out.</param>
-        /// <returns>
-        /// The joined <see cref="IParticipant" />.
-        /// </returns>
+        /// <returns>The joined <see cref="IParticipant"/>.</returns>
         public static Task<IParticipant> WaitForParticipantAsync(
             this IParticipantCollection participants,
             Func<IParticipant, bool> match,
@@ -50,9 +43,7 @@ namespace Sample.Common.Utils
         /// <param name="participantId">The participant identifier.</param>
         /// <param name="failureMessage">The failure message.</param>
         /// <param name="timeOut">The time out.</param>
-        /// <returns>
-        /// The joined <see cref="IParticipant" />.
-        /// </returns>
+        /// <returns>The joined <see cref="IParticipant"/>.</returns>
         public static Task<IParticipant> WaitForParticipantAsync(
             this IParticipantCollection participants,
             string participantId,
@@ -76,9 +67,7 @@ namespace Sample.Common.Utils
         /// <param name="match">The match function.</param>
         /// <param name="failureMessage">The failure message.</param>
         /// <param name="timeOut">The time out.</param>
-        /// <returns>
-        /// The removed <see cref="IParticipant" />.
-        /// </returns>
+        /// <returns>The removed <see cref="IParticipant"/>.</returns>
         public static Task<IParticipant> WaitForRemovedParticipantAsync(
             this IParticipantCollection participants,
             Func<IParticipant, bool> match,

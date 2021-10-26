@@ -1,14 +1,10 @@
-﻿// <copyright file="IncidentResponderStatusData.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.Graph;
+using Newtonsoft.Json;
+using System;
+using System.ComponentModel;
 
-namespace Sample.IncidentBot.IncidentStatus
+namespace Scrummie.API.IncidentStatus
 {
-    using System;
-    using Microsoft.Graph;
-    using Newtonsoft.Json;
-
     /// <summary>
     /// The responder's meeting status.
     /// </summary>
@@ -45,15 +41,14 @@ namespace Sample.IncidentBot.IncidentStatus
         }
 
         /// <summary>
-        /// Gets the responder's object id.
+        /// Gets or sets the call id of the meeting leg to responder.
         /// </summary>
-        public string ObjectId { get; private set; }
+        public string MeetingCallId { get; set; }
 
         /// <summary>
-        /// Gets or sets the notification status.
+        /// Gets or sets the scenario identifier of the meeting leg to responder.
         /// </summary>
-        [JsonConverter(typeof(EnumConverter))]
-        public CallState? NotificationStatus { get; set; }
+        public Guid MeetingScenarioId { get; set; }
 
         /// <summary>
         /// Gets or sets the meeting status.
@@ -72,13 +67,14 @@ namespace Sample.IncidentBot.IncidentStatus
         public Guid NotificationScenarioId { get; set; }
 
         /// <summary>
-        /// Gets or sets the call id of the meeting leg to responder.
+        /// Gets or sets the notification status.
         /// </summary>
-        public string MeetingCallId { get; set; }
+        [JsonConverter(typeof(EnumConverter))]
+        public CallState? NotificationStatus { get; set; }
 
         /// <summary>
-        /// Gets or sets the scenario identifier of the meeting leg to responder.
+        /// Gets the responder's object id.
         /// </summary>
-        public Guid MeetingScenarioId { get; set; }
+        public string ObjectId { get; private set; }
     }
 }

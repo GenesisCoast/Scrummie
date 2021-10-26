@@ -1,19 +1,14 @@
-﻿// <copyright file="JoinInfo.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.Graph;
+using System;
+using System.IO;
+using System.Net;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
+using System.Text;
+using System.Text.RegularExpressions;
 
-namespace Sample.Common.Meetings
+namespace Scrummie.Common.Meetings
 {
-    using System;
-    using System.IO;
-    using System.Net;
-    using System.Runtime.Serialization;
-    using System.Runtime.Serialization.Json;
-    using System.Text;
-    using System.Text.RegularExpressions;
-    using Microsoft.Graph;
-
     /// <summary>
     /// Gets the join information.
     /// </summary>
@@ -68,10 +63,10 @@ namespace Sample.Common.Meetings
         private class Context
         {
             /// <summary>
-            /// Gets or sets the Tenant Id.
+            /// Gets or sets the chat message id.
             /// </summary>
             [DataMember]
-            public string Tid { get; set; }
+            public string MessageId { get; set; }
 
             /// <summary>
             /// Gets or sets the AAD object id of the user.
@@ -80,10 +75,10 @@ namespace Sample.Common.Meetings
             public string Oid { get; set; }
 
             /// <summary>
-            /// Gets or sets the chat message id.
+            /// Gets or sets the Tenant Id.
             /// </summary>
             [DataMember]
-            public string MessageId { get; set; }
+            public string Tid { get; set; }
         }
     }
 }

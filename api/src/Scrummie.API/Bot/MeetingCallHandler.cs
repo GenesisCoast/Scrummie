@@ -1,17 +1,12 @@
-﻿// <copyright file="MeetingCallHandler.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.Graph;
+using Microsoft.Graph.Communications.Calls;
+using Microsoft.Graph.Communications.Common.Telemetry;
+using Microsoft.Graph.Communications.Resources;
+using Scrummie.API.IncidentStatus;
+using System.Threading.Tasks;
 
-namespace Sample.IncidentBot.Bot
+namespace Scrummie.API.Bot
 {
-    using System.Threading.Tasks;
-    using Microsoft.Graph;
-    using Microsoft.Graph.Communications.Calls;
-    using Microsoft.Graph.Communications.Common.Telemetry;
-    using Microsoft.Graph.Communications.Resources;
-    using Sample.IncidentBot.IncidentStatus;
-
     /// <summary>
     /// The meeting call handler.
     /// </summary>
@@ -37,6 +32,12 @@ namespace Sample.IncidentBot.Bot
         protected override void CallOnUpdated(ICall sender, ResourceEventArgs<Call> args)
         {
             this.statusData?.UpdateBotMeetingStatus(sender.Resource.State);
+        }
+
+        /// <inheritdoc/>
+        protected override void ParticipantOnUpdated(IParticipant sender, ResourceEventArgs<Participant> args)
+        {
+            // do nothing.
         }
 
         /// <inheritdoc/>
@@ -76,12 +77,6 @@ namespace Sample.IncidentBot.Bot
 
                 this.statusData?.UpdateResponderMeetingStatus(responderId, IncidentResponderMeetingStatus.Removed);
             }
-        }
-
-        /// <inheritdoc/>
-        protected override void ParticipantOnUpdated(IParticipant sender, ResourceEventArgs<Participant> args)
-        {
-            // do nothing.
         }
 
         /// <summary>

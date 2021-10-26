@@ -1,19 +1,14 @@
-﻿// <copyright file="IncomingCallHandler.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using Microsoft.Graph;
+using Microsoft.Graph.Communications.Calls;
+using Microsoft.Graph.Communications.Common.Telemetry;
+using Microsoft.Graph.Communications.Resources;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace Sample.IncidentBot.Bot
+namespace Scrummie.API.Bot
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Microsoft.Graph;
-    using Microsoft.Graph.Communications.Calls;
-    using Microsoft.Graph.Communications.Common.Telemetry;
-    using Microsoft.Graph.Communications.Resources;
-
     /// <summary>
     /// The call handler for incoming calls.
     /// </summary>
