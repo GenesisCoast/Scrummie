@@ -1,0 +1,69 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.7.1": {}
+  },
+  "libraries": {},
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.7.1": [
+      "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\Common\\Sample.Common\\Sample.Common.csproj"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\h.sanderson\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.API.old\\Scrummie.API.old.csproj",
+      "projectName": "Sample.IncidentBot",
+      "projectPath": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.API.old\\Scrummie.API.old.csproj",
+      "packagesPath": "C:\\Users\\h.sanderson\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.API.old\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\h.sanderson\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net471"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net471": {
+          "targetAlias": "net471",
+          "projectReferences": {
+            "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\Common\\Sample.Common\\Sample.Common.csproj": {
+              "projectPath": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\Common\\Sample.Common\\Sample.Common.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net471": {
+        "targetAlias": "net471",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+      }
+    }
+  },
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\Common\\Sample.Common\\Sample.Common.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\Common\\Sample.Common\\Sample.Common.csproj",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.7.1"
+      ]
+    }
+  ]
+}

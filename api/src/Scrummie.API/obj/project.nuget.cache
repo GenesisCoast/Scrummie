@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "YDn40x57nEJSSbVwH/pJ/dMZ+7E2HA0SdP5dsp5+M6NRL9hR5j35CpsEbKDvi6xy13T0MUzcvpQthriZmjjgyA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.API\\Scrummie.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\h.sanderson\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\h.sanderson\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\h.sanderson\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.11.1\\microsoft.visualstudio.azure.containers.tools.targets.1.11.1.nupkg.sha512",
+    "C:\\Users\\h.sanderson\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\h.sanderson\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\h.sanderson\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\h.sanderson\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}

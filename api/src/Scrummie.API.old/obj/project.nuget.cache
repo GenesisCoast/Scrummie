@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "qDy/fwmR2lUjMOID3kI+fkwXkRFs2kMo0W0SiYd6RFex6OU22JJBYeIY+Uqpybkl1hRfQ4FDu2aSkKEOhMPG0A==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\api\\src\\Scrummie.API.old\\Scrummie.API.old.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\Common\\Sample.Common\\Sample.Common.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\h.sanderson\\Git Repos\\Personal\\Scrummie\\Common\\Sample.Common\\Sample.Common.csproj",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.7.1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+C:\Users\h.sanderson\Git Repos\Personal\Scrummie\api\Scrummie.Data\bin\Debug\net5.0\Scrummie.Data.deps.json
+C:\Users\h.sanderson\Git Repos\Personal\Scrummie\api\Scrummie.Data\bin\Debug\net5.0\Scrummie.Data.dll
+C:\Users\h.sanderson\Git Repos\Personal\Scrummie\api\Scrummie.Data\bin\Debug\net5.0\ref\Scrummie.Data.dll
+C:\Users\h.sanderson\Git Repos\Personal\Scrummie\api\Scrummie.Data\bin\Debug\net5.0\Scrummie.Data.pdb
+C:\Users\h.sanderson\Git Repos\Personal\Scrummie\api\Scrummie.Data\obj\Debug\net5.0\Scrummie.Data.csproj.AssemblyReference.cache
+C:\Users\h.sanderson\Git Repos\Personal\Scrummie\api\Scrummie.Data\obj\Debug\net5.0\Scrummie.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\h.sanderson\Git Repos\Personal\Scrummie\api\Scrummie.Data\obj\Debug\net5.0\Scrummie.Data.AssemblyInfoInputs.cache
+C:\Users\h.sanderson\Git Repos\Personal\Scrummie\api\Scrummie.Data\obj\Debug\net5.0\Scrummie.Data.AssemblyInfo.cs
+C:\Users\h.sanderson\Git Repos\Personal\Scrummie\api\Scrummie.Data\obj\Debug\net5.0\Scrummie.Data.csproj.CoreCompileInputs.cache
+C:\Users\h.sanderson\Git Repos\Personal\Scrummie\api\Scrummie.Data\obj\Debug\net5.0\Scrummie.Data.dll
+C:\Users\h.sanderson\Git Repos\Personal\Scrummie\api\Scrummie.Data\obj\Debug\net5.0\ref\Scrummie.Data.dll
+C:\Users\h.sanderson\Git Repos\Personal\Scrummie\api\Scrummie.Data\obj\Debug\net5.0\Scrummie.Data.pdb
